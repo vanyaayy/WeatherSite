@@ -1,0 +1,26 @@
+<%- include("header") -%>
+<body>
+    <div class="container">
+        <form action="/" method="post" class="search-bar">
+            <input id="cityInput" type="text" name="cityName" placeholder="Enter City Name" autocomplete="off">
+            <button type="submit">
+                <img src="/images/search.png" height="50" width="50"/>
+            </button>
+            </form>
+   
+<div class="card">
+
+<h1><%=query%></h1>
+<h2><%=temp%>°C</h2>
+
+<img class="weather" src=<%=imgURL%>>
+
+<p><%=description%></p>
+<p>Pressure: <%=pressure%> hPa</p>
+<p>Humidity: <%=humidity%>%</p>
+
+</div>
+
+
+
+</body>
