@@ -30,7 +30,23 @@ app.post("/",function(req,res){
             const humidity = weatherData.main.humidity;
             const imgURL = "https://openweathermap.org/img/wn/"+icon+"@2x.png"
            const description = _.startCase(desc);
-            res.render("weather",{temp,description,imgURL,query,pressure,humidity});
+           const weatherCondition = weatherData.weather[0].main.toLowerCase();
+    let weatherClass = "weather-default";
+
+    if (weatherCondition.includes("clear")) {
+      weatherClass = "weather-sunny";
+    } else if (weatherCondition.includes("cloud")) {
+      weatherClass = "weather-cloudy";
+    } else if (weatherCondition.includes("rain")) {
+      weatherClass = "weather-rainy";
+    } else if (weatherCondition.includes("snow")) {
+      weatherClass = "weather-snowy";
+    } else if (weatherCondition.includes("mist")) {
+        weatherClass = "weather-mist";
+    }else if (weatherCondition.includes("fog") || weatherCondition.includes("haze")  ) {
+        weatherClass = "weather-foggy";
+    }
+            res.render("weather",{temp,description,imgURL,query,pressure,humidity,weatherClass});
         })
     })
 });
