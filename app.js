@@ -13,9 +13,10 @@ app.get("/",function(req,res){
      res.render("display");
 });
 app.post("/",function(req,res){
-    const query=req.body.cityName;
+  let weatherClass = "weather-default";
+    const query=req.body.cityName.trim();
+    console.log(query);
     const apiKey = process.env.API_KEY;
-    console.log(apiKey);
     const units= "metric";
     const url ="https://api.openweathermap.org/data/2.5/weather?q="+query+"&appid="+apiKey+"&units="+units;
     https.get(url, function(response){ //http get rqst your server --> someone's server
@@ -23,6 +24,11 @@ app.post("/",function(req,res){
         response.on("data",function(data){
             const weatherData = JSON.parse(data); //turn json in hex/string into js object
             console.log(weatherData);
+            if(response.statusCode!==200){
+              weatherClass = "weather-error"
+              res.render("error",{weatherClass});
+              return;
+            }
             const temp = weatherData.main.temp;
             const desc = weatherData.weather[0].description
             const icon = weatherData.weather[0].icon
@@ -31,7 +37,7 @@ app.post("/",function(req,res){
             const imgURL = "https://openweathermap.org/img/wn/"+icon+"@2x.png"
            const description = _.startCase(desc);
            const weatherCondition = weatherData.weather[0].main.toLowerCase();
-    let weatherClass = "weather-default";
+    
 
     if (weatherCondition.includes("clear")) {
       weatherClass = "weather-sunny";

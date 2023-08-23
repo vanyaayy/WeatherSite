@@ -8,7 +8,6 @@ body{
     align-items: center;
     justify-content: center;
     margin-top: 0.5rem;
-   
 }
 .container {
     position: relative;
@@ -128,10 +127,11 @@ button:hover{
     align-self: flex-end;
     
   }
+
   
   .weather-cloudy .container::before {
-    background-image: radial-gradient(circle, #BDBDBD 20%, transparent 70%);
-  }
+    background-image: radial-gradient(circle, #666666 20%, transparent 70%);
+}
   
   .weather-cloudy .card {
     background-image: linear-gradient(to bottom, #4E4E4E, #A6A6A6);
@@ -163,7 +163,15 @@ button:hover{
   .weather-cloudy button:hover {
     background-color: #FFFFFF; 
   }
-  
+
+  .weather-cloudy {
+    background-image: linear-gradient(to right, #aab7c4, #d9d9d9, #f2f2f2);
+}
+
+.weather-sunny {
+  background-image: linear-gradient(to right,#FFEEB2, #FFFFF7,  #D0E8FC);
+}
+
   .weather-rainy .container::before {
     background-image: radial-gradient(circle, #1565C0 20%, transparent 70%);
   }
@@ -183,6 +191,36 @@ button:hover{
   .weather-rainy p {
     color: #FFFFFF;
   }
+  @keyframes raindrop-fall {
+    0% {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 1;
+    }
+}
+
+.raindrop {
+  position: absolute;
+  width: 2px;
+  height: 10px;
+  background: rgba(0, 0, 255, 0.5);
+  border-radius: 50%;
+  animation: raindrop-fall linear infinite;
+}
+
+@keyframes rain {
+    0% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+
   .weather-snowy .container::before {
     background-image: radial-gradient(circle, #E0E0E0 20%, transparent 70%);
   }
@@ -203,21 +241,20 @@ button:hover{
     color: #FFFFFF;
   }
   .weather-snowy .search-bar {
-    background-color: #333333; /* White */
+    background-color: #333333; 
   }
   
   .weather-snowy #cityInput {
-    color: #FFFFFF; /* White */
+    color: #FFFFFF; 
   }
   
   .weather-snowy button {
-    background-color: #B2DFFC; /* Light Blue */
+    background-color: #B2DFFC; 
   }
   
   .weather-snowy button:hover {
-    background-color: #E6F4FF; /* Lighter Blue */
+    background-color: #E6F4FF; 
   }
-  
   
 
   .weather-mist .container::before {
@@ -312,5 +349,18 @@ button:hover{
   .weather-foggy button:hover {
     background-color: #ffffff80;
   }
+
+  .weather-error html{
+    background-image: linear-gradient(to right, #c3d5f3, #eef2f9, #b8cdea);
   
-  
+  }
+  .weather-error h1{
+    color: #2f5891;
+    size:30px;
+  } 
+
+
+
+
+
+

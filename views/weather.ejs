@@ -1,7 +1,7 @@
 <div class=" <%= weatherClass %>">
  
 <%- include("header") -%>
-<body>
+<body class = "<%= weatherClass %>">
     <div class="container">
         <form action="/" method="post" class="search-bar">
             <input id="cityInput" type="text" name="cityName" placeholder="Enter City Name" autocomplete="off">
@@ -24,5 +24,17 @@
 </div>
 
 
-</div>
 </body>
+<script>
+    const rainyContainer = document.querySelector('.weather-rainy .container');
+
+    for (let i = 0; i < 100; i++) {
+        const raindrop = document.createElement('div');
+        raindrop.classList.add('raindrop');
+        raindrop.style.left = `${Math.random() * 100}%`;
+        raindrop.style.animationDuration = `${Math.random() * 1 + 0.5}s`;
+        rainyContainer.appendChild(raindrop);
+    }
+</script>
+
+</div>
