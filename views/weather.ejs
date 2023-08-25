@@ -22,9 +22,6 @@
 <p>Humidity: <%=humidity%>%</p>
 
 </div>
-
-
-</body>
 <script>
     const rainyContainer = document.querySelector('.weather-rainy .container');
 
@@ -35,6 +32,40 @@
         raindrop.style.animationDuration = `${Math.random() * 1 + 0.5}s`;
         rainyContainer.appendChild(raindrop);
     }
-</script>
 
+</script>
+<% function capitalizeWords(str) { %>
+    <%= str
+        .toLowerCase()
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' '); %>
+<% } %>
+<div class="forecast">
+    <% const numCardsToShow = 5; %>
+    <div class="forecast-row">
+        <% forecastData.slice(0, numCardsToShow).forEach((forecast) => { %>
+            <div class="forecast-item <%= weatherClass %>">
+                <div class="forecast-info">
+                    <% const [date, time] = forecast.dt_txt.split(' '); %>
+                    <% const dateStr = date.slice(8, 10); %>
+                    <% const monthStr = date.slice(6, 7); %>
+                    <% if (dateStr == dayOfMonth ) { %>
+                            <% var dateString = "Today"; %>
+                        <% } 
+                    else { %>
+                            <% var dateString = "Tomorrow"; %>
+                        <% } %>
+                    <p><%= dateString %></p>
+                    <p> <%= time.slice(0, 2) + "00 hours" %></p>
+                    <p> <%= forecast.main.temp %>°C</p>
+                    <p> <%= capitalizeWords(forecast.weather[0].description) %></p>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+</div>
+</div>
+</body>
 </div>
