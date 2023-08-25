@@ -67,8 +67,6 @@ app.post("/",function(req,res){
           const localDate = new Date(localTimestamp*1000); // Convert local timestamp to milliseconds
           const dayOfMonth = localDate.getDate();
           //console.log(localDate,dayOfMonth);
-    
-
     if (weatherCondition.includes("clear")) {
       weatherClass = "weather-sunny";
     } else if (weatherCondition.includes("cloud")) {
